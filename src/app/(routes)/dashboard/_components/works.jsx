@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { Smartphone, Globe, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 
 export default function Works() {
@@ -306,102 +307,65 @@ export default function Works() {
       </div>
 
       {/* ── LIGHTBOX ── */}
-      {lightbox && (
+      {lightbox && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-sm"
           onClick={closeLightbox}
+          style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            zIndex: 99999, display: 'flex', flexDirection: 'column',
+            backgroundColor: 'rgba(0,0,0,0.97)',
+          }}
         >
           {/* Top bar */}
-          <div className="flex items-center justify-between px-6 py-4 flex-shrink-0" onClick={e => e.stopPropagation()}>
+          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px' }} onClick={e => e.stopPropagation()}>
             <div>
-              <p className="text-white font-semibold text-sm">{lightbox.project.name}</p>
-              <p className="text-white/40 text-xs">{lightbox.index + 1} / {lightbox.project.gallery.length}</p>
+              <p style={{ color: 'white', fontWeight: 600, fontSize: 14, margin: 0 }}>{lightbox.project.name}</p>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, margin: 0 }}>{lightbox.index + 1} / {lightbox.project.gallery.length}</p>
             </div>
-            <button
-              onClick={closeLightbox}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-110"
-            >
-              <X className="w-5 h-5" />
+            <button onClick={closeLightbox} style={{ padding: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', cursor: 'pointer', color: 'white', display: 'flex' }}>
+              <X size={20} />
             </button>
           </div>
 
-          {/* Main image area */}
-          <div className="flex-1 flex items-center justify-center relative px-16" style={{ minHeight: 0, overflow: 'hidden' }} onClick={e => e.stopPropagation()}>
-            {/* Prev button */}
-            <button
-              onClick={goPrev}
-              className="absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-110 z-10"
-            >
-              <ChevronLeft className="w-6 h-6" />
+          {/* Main image */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', padding: '0 72px', minHeight: 0, overflow: 'hidden' }} onClick={e => e.stopPropagation()}>
+            <button onClick={goPrev} style={{ position: 'absolute', left: 16, padding: 12, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', cursor: 'pointer', color: 'white', display: 'flex', zIndex: 1 }}>
+              <ChevronLeft size={24} />
             </button>
-
-            {/* Image - use plain img for reliable CSS sizing in lightbox */}
             <img
               key={lightbox.index}
               src={lightbox.project.gallery[lightbox.index]}
-              alt={`${lightbox.project.name} screenshot ${lightbox.index + 1}`}
-              style={{
-                maxHeight: 'calc(100vh - 230px)',
-                maxWidth: '100%',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain',
-                borderRadius: '8px',
-                boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
-                display: 'block',
-                margin: '0 auto',
-              }}
+              alt={`${lightbox.project.name} ${lightbox.index + 1}`}
+              style={{ maxHeight: 'calc(100vh - 200px)', maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: 8, display: 'block' }}
             />
-
-            {/* Next button */}
-            <button
-              onClick={goNext}
-              className="absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-110 z-10"
-            >
-              <ChevronRight className="w-6 h-6" />
+            <button onClick={goNext} style={{ position: 'absolute', right: 16, padding: 12, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', cursor: 'pointer', color: 'white', display: 'flex', zIndex: 1 }}>
+              <ChevronRight size={24} />
             </button>
           </div>
 
-          {/* Bottom filmstrip */}
-          <div className="flex-shrink-0 px-6 py-4" onClick={e => e.stopPropagation()}>
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-1.5 mb-3">
+          {/* Filmstrip */}
+          <div style={{ flexShrink: 0, padding: '12px 24px' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginBottom: 10 }}>
               {lightbox.project.gallery.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setLightbox(prev => ({ ...prev, index: idx }))}
-                  className={`rounded-full transition-all duration-200 ${
-                    idx === lightbox.index
-                      ? 'w-6 h-2 bg-blue-400'
-                      : 'w-2 h-2 bg-white/30 hover:bg-white/60'
-                  }`}
-                />
+                <button key={idx} onClick={() => setLightbox(prev => ({ ...prev, index: idx }))}
+                  style={{ border: 'none', cursor: 'pointer', borderRadius: 99, transition: 'all 0.2s',
+                    width: idx === lightbox.index ? 24 : 8, height: 8,
+                    background: idx === lightbox.index ? '#60a5fa' : 'rgba(255,255,255,0.3)' }} />
               ))}
             </div>
-
-            {/* Thumbnail filmstrip */}
-            <div className="flex gap-2 justify-center overflow-x-auto scrollbar-hide pb-1">
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', overflowX: 'auto', paddingBottom: 4 }}>
               {lightbox.project.gallery.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setLightbox(prev => ({ ...prev, index: idx }))}
-                  className={`relative flex-shrink-0 w-16 h-11 rounded-md overflow-hidden transition-all duration-200 ${
-                    idx === lightbox.index
-                      ? 'border-2 border-blue-400 scale-110 shadow-lg shadow-blue-500/30'
-                      : 'border-2 border-transparent opacity-50 hover:opacity-90 hover:scale-105'
-                  }`}
-                >
-                  <img src={img} alt={`thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                <button key={idx} onClick={() => setLightbox(prev => ({ ...prev, index: idx }))}
+                  style={{ flexShrink: 0, width: 64, height: 44, borderRadius: 6, overflow: 'hidden', border: idx === lightbox.index ? '2px solid #60a5fa' : '2px solid transparent',
+                    opacity: idx === lightbox.index ? 1 : 0.5, cursor: 'pointer', padding: 0, transform: idx === lightbox.index ? 'scale(1.1)' : 'scale(1)', transition: 'all 0.2s' }}>
+                  <img src={img} alt={`thumb ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </button>
               ))}
             </div>
-
-            {/* Keyboard hint */}
-            <p className="text-center text-white/20 text-xs mt-3">
-              ← → arrow keys to navigate · Esc to close
-            </p>
+            <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.2)', fontSize: 11, marginTop: 10 }}>← → arrow keys · Esc to close</p>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   )
