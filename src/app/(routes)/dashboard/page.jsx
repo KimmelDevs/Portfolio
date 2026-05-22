@@ -5,7 +5,7 @@ import { Mail, Phone, Github, MapPin } from 'lucide-react'
 
 const About = lazy(() => import('./_components/about'))
 const Services = lazy(() => import('./_components/services'))
-const Projects = lazy(() => import('./_components/projects'))
+const Projects = lazy(() => import('./_components/works'))
 const Hero = lazy(() => import('./_components/heropage'))
 const Contacts = lazy(() => import('./_components/contact'))
 

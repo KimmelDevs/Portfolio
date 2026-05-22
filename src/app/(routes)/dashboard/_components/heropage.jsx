@@ -61,7 +61,7 @@ export default function Hero() {
               Full-Stack Developer & CS Student
             </h2>
             <p className="text-gray-300 text-base md:text-lg max-w-xl mb-6">
-              Building Android, web, and AI-powered applications. Civil Service passer. CGPA 1.37.
+              A passionate developer who loves building real-world apps — from mobile fitness tools to web platforms. Currently finishing my CS degree while taking on freelance projects and growing every day.
             </p>
             <div className="flex gap-4 justify-center md:justify-start flex-wrap">
               <a
