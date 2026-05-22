@@ -14,6 +14,33 @@ export default function Works() {
 
   const allProjects = [
     {
+      id: 11,
+      name: "RFID/DOOR – ESP-32 Servo Smart House",
+      description: "IoT smart house model with RFID access control, servo-driven door & roof, MQTT, PayMongo payments, and a dino game easter egg — all powered by ESP-32 and Next.js.",
+      tags: ["ESP-32", "Next.js", "MQTT", "PayMongo", "RFID"],
+      type: "web",
+      icon: <Globe className="w-5 h-5 text-white" />,
+      details: "A physical smart house model controlled by an ESP-32 microcontroller. RFID cards unlock the servo-powered door and roof. The companion web app (built with Next.js and MQTT) lets admins manage users, view live scan logs, control the door remotely, top up access points via PayMongo, and push card data to the ESP-32. Also features a hidden Dino Game easter egg inside the app.",
+      gallery: [
+        "/projects/esp32house/image13.jpeg",
+        "/projects/esp32house/image16.jpeg",
+        "/projects/esp32house/image17.jpeg",
+        "/projects/esp32house/image14.jpeg",
+        "/projects/esp32house/image15.jpeg",
+        "/projects/esp32house/image1.png",
+        "/projects/esp32house/image3.png",
+        "/projects/esp32house/image8.png",
+        "/projects/esp32house/image4.png",
+        "/projects/esp32house/image5.png",
+        "/projects/esp32house/image6.png",
+        "/projects/esp32house/image7.png",
+        "/projects/esp32house/image9.png",
+        "/projects/esp32house/image10.png",
+      ],
+      technologies: ["ESP-32", "MicroPython", "Next.js", "TypeScript", "MQTT", "Firebase", "PayMongo"],
+      features: ["RFID card access control", "Servo-driven door & roof", "Live MQTT scan log", "Admin dashboard", "PayMongo point top-up", "Remote door control", "Dino Game easter egg"]
+    },
+    {
       id: 3,
       name: "FitTitan",
       description: "Online fitness platform with personalized workout routines and progress tracking.",
@@ -48,6 +75,29 @@ export default function Works() {
       gallery: ["/projects/lostfound/intro.png","/projects/lostfound/1.png","/projects/lostfound/2.png","/projects/lostfound/3.png","/projects/lostfound/4.png","/projects/lostfound/5.png","/projects/lostfound/6.png","/projects/lostfound/7.png","/projects/lostfound/8.png"],
       technologies: ["Next.js API Routes", "Firebase Storage", "Cloud Firestore"],
       features: ["Item reporting", "Image uploads", "Location tagging", "Real-time notifications"]
+    },
+    {
+      id: 10,
+      name: "ProtoChain – Barangay Document System",
+      description: "Thesis project: a blockchain-secured platform for requesting, issuing, and verifying barangay documents with AES encryption and QR code verification.",
+      tags: ["Next.js", "Blockchain", "AES Encryption", "Firebase"],
+      type: "web",
+      icon: <Globe className="w-5 h-5 text-white" />,
+      details: "ProtoChain digitizes barangay document issuance using blockchain technology and AES encryption to ensure tamper-proof, verifiable records. Residents can request documents online, admins approve and issue them, and third-party verifiers can authenticate documents via QR code — all without visiting the barangay hall.",
+      gallery: [
+        "/projects/protochain/image14.png",
+        "/projects/protochain/image16.png",
+        "/projects/protochain/image18.png",
+        "/projects/protochain/image20.png",
+        "/projects/protochain/image23.png",
+        "/projects/protochain/image24.png",
+        "/projects/protochain/image25.png",
+        "/projects/protochain/image26.png",
+        "/projects/protochain/image27.png",
+        "/projects/protochain/image28.png",
+      ],
+      technologies: ["Next.js", "React", "Firebase Firestore", "AES Encryption", "ASH Framework", "QR Code Verification"],
+      features: ["Online document requests", "Blockchain-secured issuance", "QR code verification", "Admin approval workflow", "Resident, admin & verifier roles", "Tamper-proof document records"]
     },
     {
       id: 6,
