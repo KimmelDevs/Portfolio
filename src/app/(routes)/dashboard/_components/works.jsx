@@ -305,7 +305,7 @@ export default function Works() {
           </div>
 
           {/* Main image area */}
-          <div className="flex-1 flex items-center justify-center relative min-h-0 px-16" onClick={e => e.stopPropagation()}>
+          <div className="flex-1 flex items-center justify-center relative px-16" style={{ minHeight: 0, overflow: 'hidden' }} onClick={e => e.stopPropagation()}>
             {/* Prev button */}
             <button
               onClick={goPrev}
@@ -314,18 +314,23 @@ export default function Works() {
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Image */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              <Image
-                key={lightbox.index}
-                src={lightbox.project.gallery[lightbox.index]}
-                alt={`${lightbox.project.name} screenshot ${lightbox.index + 1}`}
-                width={1400}
-                height={900}
-                className="object-contain max-h-full max-w-full rounded-lg shadow-2xl"
-                style={{ maxHeight: 'calc(100vh - 220px)' }}
-              />
-            </div>
+            {/* Image - use plain img for reliable CSS sizing in lightbox */}
+            <img
+              key={lightbox.index}
+              src={lightbox.project.gallery[lightbox.index]}
+              alt={`${lightbox.project.name} screenshot ${lightbox.index + 1}`}
+              style={{
+                maxHeight: 'calc(100vh - 230px)',
+                maxWidth: '100%',
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
+                display: 'block',
+                margin: '0 auto',
+              }}
+            />
 
             {/* Next button */}
             <button
@@ -365,7 +370,7 @@ export default function Works() {
                       : 'border-2 border-transparent opacity-50 hover:opacity-90 hover:scale-105'
                   }`}
                 >
-                  <Image src={img} alt={`thumb ${idx + 1}`} fill className="object-cover" />
+                  <img src={img} alt={`thumb ${idx + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
