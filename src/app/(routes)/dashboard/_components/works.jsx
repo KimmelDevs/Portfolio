@@ -73,6 +73,27 @@ export default function Works() {
       features: ["Item reporting", "Image uploads", "Location tagging", "Real-time notifications"]
     },
     {
+      id: 12,
+      name: "ProtoChain Mobile – Barangay App",
+      description: "Android companion app for ProtoChain — residents can request barangay documents, track status, scan QR codes to verify, and download approved documents on their phone.",
+      tags: ["Android", "Kotlin", "Jetpack Compose", "Firebase"],
+      type: "android",
+      icon: "📱",
+      details: "The mobile side of the ProtoChain thesis system, built in Kotlin with Jetpack Compose. Residents log in, browse available document types, submit requests with supporting details, track their request status in real-time, scan QR codes to verify documents, and download approved files directly on their phone.",
+      gallery: [
+        "/projects/protochain-mobile/image50.jpg",
+        "/projects/protochain-mobile/image51.jpg",
+        "/projects/protochain-mobile/image52.jpg",
+        "/projects/protochain-mobile/image53.jpg",
+        "/projects/protochain-mobile/image54.jpg",
+        "/projects/protochain-mobile/image55.jpg",
+        "/projects/protochain-mobile/image56.jpg",
+        "/projects/protochain-mobile/image57.jpg",
+      ],
+      technologies: ["Kotlin", "Jetpack Compose", "Firebase Firestore", "Firebase Auth", "QR Scanner", "Retrofit"],
+      features: ["Document request submission", "Real-time status tracking", "QR code document verification", "Document download", "User profile management", "Multiple document types"]
+    },
+    {
       id: 10,
       name: "ProtoChain – Barangay Document System",
       description: "Thesis: a blockchain-secured platform for requesting, issuing, and verifying barangay documents with AES encryption and QR codes.",
